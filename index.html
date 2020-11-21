@@ -15,17 +15,13 @@
     var openedchangeCount = 0;
 
     function displayMessage(s) {
-      var p = document.getElementById("status")
-      p.innerText = s
+      document.getElementById("status").innerText = s
     }
 
     function displayCounts() {
-      var i = document.getElementById("openCount")
-      i.innerText = openCount
-      var j = document.getElementById("closeCount")
-      j.innerText = closeCount
-      var k = document.getElementById("openchangedCount")
-      k.innerText = openedchangeCount
+      document.getElementById("openCount").innerText = openCount
+      document.getElementById("closeCount").innerText = closeCount
+      document.getElementById("openchangedCount").innerText = openedchangeCount
     }
 
     function onopenedchange(e) {
