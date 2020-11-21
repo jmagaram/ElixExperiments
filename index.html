@@ -28,57 +28,68 @@
       k.innerText = openedchangeCount
     }
 
+    function onopenedchange(e) {
+      const isOpened = event.currentTarget.opened;
+      openedchangeCount++;
+      displayCounts();
+    }
+
+    function onopen(e) {
+      openCount++;
+      displayCounts();
+    }
+
+    function onclose(e) {
+      closeCount++;
+      displayCounts();
+    }
+
+    function onclicktarget(e) {
+      displayMessage("Clicked the target!");
+    }
+
     function attachEventHandler() {
       var p = document.getElementById("samplePopup")
 
-      // OPEN event
+      // ================== OPEN =======================
       // Note that "open" is both the name of a method and the name of an event, so
       // it is possible I'm not attaching the event listener properly.
 
-      p.addEventListener("open", (e) => {
-        openCount++;
-        displayCounts();
-      });
+      p.addEventListener("open", onopen);
 
       // p.open = (e) => {
       //   openCount++;
       //   displayCounts();
       // };
 
-      // CLOSE event
+      // ================== CLOSE ====================
       // Note that "close" is both the name of a method and the name of an event, so
       // it is possible I'm not attaching the event listener properly.      
 
-      p.addEventListener("close", (e) => {
-        closeCount++;
-        displayCounts();
-      });
+      p.addEventListener("close", onclose);
 
       // p.close = (e) => {
       //   closeCount++;
       //   displayCounts();
       // };
 
-      // OPENEDCHANGE event
+      // ================== OPENEDCHANGE =============
 
-      p.addEventListener("openedchange", (e) => {
-        const isOpened = event.currentTarget.opened;
-        openedchangeCount++;
-        displayCounts();
-      });
+      p.addEventListener("openedchange", onopenedchange);
 
       // p.openedchange = (e) => {
       //   openedchangeCount++;
       //   displayCounts();
       // };
 
+      // ================== SIMPLE CLICK TEST =============
+
       // This is just a test to see if I know how to connect an event handler.
       // Clicking on this element seems to raise the event. I don't know why this
-      // works but the openedchange event does not.
+      // works but the openedchange and other Popup events do not.
       var q = document.getElementById("clickTarget")
-      q.addEventListener("click", (e) => {
-        displayMessage("Clicked on the target!");
-      });
+      q.addEventListener("click", onclicktarget);
+
 
       displayMessage("finished attaching event handlers")
       displayCounts();
