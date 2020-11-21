@@ -32,40 +32,53 @@
       var p = document.getElementById("samplePopup")
 
       // OPEN event
+      // Note that "open" is both the name of a method and the name of an event, so
+      // it is possible I'm not attaching the event listener properly.
 
-      // p.addEventListener("open", (e) => {
-      //   openCount++;
-      //   displayCounts();
-      // });
-
-      p.open = (e) => {
+      p.addEventListener("open", (e) => {
         openCount++;
         displayCounts();
-      };
+      });
+
+      // p.open = (e) => {
+      //   openCount++;
+      //   displayCounts();
+      // };
 
       // CLOSE event
+      // Note that "close" is both the name of a method and the name of an event, so
+      // it is possible I'm not attaching the event listener properly.      
 
-      // p.addEventListener("close", (e) => {
-      //   closeCount++;
-      //   displayCounts();
-      // });
-
-      p.close = (e) => {
+      p.addEventListener("close", (e) => {
         closeCount++;
         displayCounts();
-      };
+      });
+
+      // p.close = (e) => {
+      //   closeCount++;
+      //   displayCounts();
+      // };
 
       // OPENEDCHANGE event
 
-      // p.addEventListener("openedchange", (e) => {
-      //   openedchangeCount++;
-      //   displayCounts();
-      // });
-
-      p.openedchange = (e) => {
+      p.addEventListener("openedchange", (e) => {
+        const isOpened = event.currentTarget.opened;
         openedchangeCount++;
         displayCounts();
-      };
+      });
+
+      // p.openedchange = (e) => {
+      //   openedchangeCount++;
+      //   displayCounts();
+      // };
+
+      // This is just a test to see if I know how to connect an event handler.
+      // Clicking on this element seems to raise the event. I don't know why this
+      // works but the openedchange event does not.
+      var q = document.getElementById("clickTarget")
+      q.addEventListener("click", (e) => {
+        displayMessage("Clicked on the target!");
+      });
 
       displayMessage("finished attaching event handlers")
       displayCounts();
@@ -104,6 +117,7 @@
       </div>
     </elix-popup>
   </div>
+  <div style="margin-top:50px; border:1px solid black" id="clickTarget">click target</div>
 </body>
 
 </html>
