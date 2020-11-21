@@ -2,23 +2,75 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Simple application using an Elix component</title>
-  <script type="module" src="./node_modules/elix/define/DateComboBox.js"></script>
   <script type="module">
-    // Import the Elix components we want to use.
-    import DateComboBox from './node_modules/elix/define/DateComboBox.js';
+    import Popup from './node_modules/elix/define/Popup.js';
+  </script>
+  <script type="text/javascript">
 
-    // Instantiate an Elix component.
-    const dateComboBox = new DateComboBox();
+    var openCount = 0;
+    var closeCount = 0;
+    var openedchangeCount = 0;
 
-    // You can set custom properties on the component, invoke methods, etc.
-    dateComboBox.date = new Date('1 Jan 2021');
+    function displayMessage(s) {
+      var p = document.getElementById("status")
+      p.innerText = s
+    }
 
-    // We can add the components to the page like any other HTML elements.
-    document.body.appendChild(dateComboBox);
+    function displayCounts() {
+      var i = document.getElementById("openCount")
+      i.innerText = openCount
+      var j = document.getElementById("closeCount")
+      j.innerText = closeCount
+      var k = document.getElementById("openchangedCount")
+      k.innerText = openedchangeCount
+    }
+
+    function attachEventHandler() {
+      var p = document.getElementById("samplePopup")
+
+      // OPEN event
+
+      // p.addEventListener("open", (e) => {
+      //   openCount++;
+      //   displayCounts();
+      // });
+
+      p.open = (e) => {
+        openCount++;
+        displayCounts();
+      };
+
+      // CLOSE event
+
+      // p.addEventListener("close", (e) => {
+      //   closeCount++;
+      //   displayCounts();
+      // });
+
+      p.close = (e) => {
+        closeCount++;
+        displayCounts();
+      };
+
+      // OPENEDCHANGE event
+
+      // p.addEventListener("openedchange", (e) => {
+      //   openedchangeCount++;
+      //   displayCounts();
+      // });
+
+      p.openedchange = (e) => {
+        openedchangeCount++;
+        displayCounts();
+      };
+
+      displayMessage("finished attaching event handlers")
+      displayCounts();
+    }
+
   </script>
 
   <style>
@@ -27,18 +79,31 @@
       font-size: 15px;
     }
   </style>
-
 </head>
 
 <body>
-  <p>
-    This page shows how Elix components can be used in the context of
-    a TypeScript application. This page shows two instances of the Elix
-    <a href="https://component.kitchen/elix/DateComboBox">DateComboBox</a>
-    component. The first is created via markup; the second
-    is created at runtime in JavaScript. Both work the same way.
-  </p>
-  <elix-date-combo-box date="1 Jan 2020"></elix-date-combo-box>
+  <div>
+    Status: <span id="status"></span>
+  </div>
+  <div>
+    Open count: <span id="openCount"></span>
+  </div>
+  <div>
+    Close count: <span id="closeCount"></span>
+  </div>
+  <div>
+    OpenChanged count: <span id="openchangedCount"></span>
+  </div>
+  <div class="demo padded">
+    <button onclick="attachEventHandler()">Attach event handlers</button>
+    <button id="showPopup" onclick="samplePopup.open()">Open popup</button>
+    <elix-popup id="samplePopup">
+      <div style="padding: 1em;">
+        Here's a popup.
+        <button onclick="samplePopup.close()">close it!</button>
+      </div>
+    </elix-popup>
+  </div>
 </body>
 
 </html>
