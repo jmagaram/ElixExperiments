@@ -49,6 +49,14 @@
     }
 
     function attachEventHandler() {
+
+      // ================== SIMPLE CLICK TEST ON A DIV =============
+
+      // This is just a test to see if I know how to connect an event handler.
+      // And this seems to work. I don't understand why this event handler is
+      // working but the event handlers for the Elix components are not.
+      document.getElementById("clickTarget").addEventListener("click", onclicktarget);
+
       var p = document.getElementById("samplePopup")
 
       // ================== OPEN =======================
@@ -81,15 +89,6 @@
       //   openedchangeCount++;
       //   displayCounts();
       // };
-
-      // ================== SIMPLE CLICK TEST =============
-
-      // This is just a test to see if I know how to connect an event handler.
-      // Clicking on this element seems to raise the event. I don't know why this
-      // works but the openedchange and other Popup events do not.
-      var q = document.getElementById("clickTarget")
-      q.addEventListener("click", onclicktarget);
-
 
       displayMessage("finished attaching event handlers")
       displayCounts();
@@ -128,7 +127,7 @@
       </div>
     </elix-popup>
   </div>
-  <div style="margin-top:50px; border:1px solid black" id="clickTarget">click target</div>
+  <div style="margin-top:50px; width:100px; cursor: default; border:1px solid black" id="clickTarget">click here!</div>
 </body>
 
 </html>
