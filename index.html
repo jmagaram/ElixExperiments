@@ -53,12 +53,11 @@
       // working but the event handlers for the Elix components are not.
       document.getElementById("clickTarget").addEventListener("click", onclicktarget);
 
-      var p = document.getElementById("samplePopup")
-
       // ================== OPEN =======================
       // Note that "open" is both the name of a method and the name of an event, so
       // it is possible I'm not attaching the event listener properly.
 
+      var p = document.getElementById("samplePopup")
       p.addEventListener("open", onopen);
 
       // p.open = (e) => {
@@ -70,7 +69,7 @@
       // Note that "close" is both the name of a method and the name of an event, so
       // it is possible I'm not attaching the event listener properly.      
 
-      p.addEventListener("close", onclose);
+      // p.addEventListener("close", onclose);
 
       // p.close = (e) => {
       //   closeCount++;
@@ -79,7 +78,7 @@
 
       // ================== OPENEDCHANGE =============
 
-      p.addEventListener("openedchange", onopenedchange);
+      // p.addEventListener("openedchange", onopenedchange);
 
       // p.openedchange = (e) => {
       //   openedchangeCount++;
